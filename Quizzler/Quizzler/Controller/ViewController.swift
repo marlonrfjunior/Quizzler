@@ -30,23 +30,23 @@ class ViewController: UIViewController {
     
     
     @IBAction func anwserPressedButton(_ sender: UIButton) {
-        quetionNumber+=1
-        print(sender.currentTitle!)
-        print("\(quiz[quetionNumber].question)")
-        if sender.currentTitle! == quiz[quetionNumber].anwser {
+        
+        quizzBrain.quetionNumber+=1
+        
+        if quizzBrain.chekAwnser(sender.currentTitle!) {
             sender.backgroundColor =   UIColor.green
         }
         else{
             sender.backgroundColor = UIColor.red
         }
+        
         Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateQuestion), userInfo: nil, repeats: false)
     }
     
 
     @objc func updateQuestion() {
-        questionLabel.text = quiz[quetionNumber].question
-        progressBar.progress = Float(quetionNumber) / Float(quiz.count - 1)
-        print(Float(quetionNumber) / Float(quiz.count))
+        questionLabel.text = quizzBrain.getTextQuestion()
+        progressBar.progress = quizzBrain.getProgress()
         trueButton.backgroundColor = UIColor.clear
         falseButton.backgroundColor = UIColor.clear
         
