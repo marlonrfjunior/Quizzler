@@ -25,6 +25,24 @@ struct QuizzBrain {
         
     ]
     
+    func getTextQuestion() -> String {
+        return quiz[quetionNumber].question
+    }
+    
+    func getProgress() -> Float {
+        return  Float(quetionNumber) / Float(quiz.count - 1)
+    }
+    func chekAwnser(_ userAnswer: String ) ->  Bool {
+        
+        if userAnswer == quiz[quetionNumber].anwser {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    
 }
 
 
