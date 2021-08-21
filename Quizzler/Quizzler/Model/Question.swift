@@ -9,10 +9,14 @@ import Foundation
 
 struct question {
     var question : String
-    var anwser : String
+    var correctAnswer : String
+    var secondAnswer : String
+    var thirdAnswer : String
     
-    init(question : String , awnser : String) {
+    init(question : String , correctAnswer : String, secondAnswer : String, thirdAnswer : String) {
         self.question = question
-        self.anwser  = awnser
+        self.correctAnswer  = correctAnswer
+        self.secondAnswer  = secondAnswer
+        self.thirdAnswer  = thirdAnswer
     }
 }

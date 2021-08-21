@@ -9,9 +9,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
+    @IBOutlet weak var fristChoiceButton: UIButton!
+    @IBOutlet weak var secondChoiceButton: UIButton!
+    @IBOutlet weak var thirdChoice3Button: UIButton!
     @IBOutlet weak var progressBar: UIProgressView!
     
     var quizzBrain = QuizzBrain()
@@ -31,8 +33,6 @@ class ViewController: UIViewController {
     
     @IBAction func anwserPressedButton(_ sender: UIButton) {
         
-        quizzBrain.quetionNumber+=1
-        
         if quizzBrain.chekAwnser(sender.currentTitle!) {
             sender.backgroundColor =   UIColor.green
         }
@@ -40,19 +40,21 @@ class ViewController: UIViewController {
             sender.backgroundColor = UIColor.red
         }
         
-        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateQuestion), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updateQuestion), userInfo: nil, repeats: false)
     }
     
 
     @objc func updateQuestion() {
         questionLabel.text = quizzBrain.getTextQuestion()
         progressBar.progress = quizzBrain.getProgress()
-        trueButton.backgroundColor = UIColor.clear
-        falseButton.backgroundColor = UIColor.clear
-        
-            if quetionNumber + 1 >= quiz.count {
-                quetionNumber = 0
-            }
+        fristChoiceButton.backgroundColor = UIColor.clear
+        secondChoiceButton.backgroundColor = UIColor.clear
+        thirdChoice3Button.backgroundColor = UIColor.clear
+        fristChoiceButton.setTitle(quizzBrain.getOption(), for: .normal)
+        secondChoiceButton.setTitle(quizzBrain.getOption(), for: .normal)
+        thirdChoice3Button.setTitle(quizzBrain.getOption(), for: .normal)
+        scoreLabel.text = quizzBrain.getScore()
+          
     }
 }
 
